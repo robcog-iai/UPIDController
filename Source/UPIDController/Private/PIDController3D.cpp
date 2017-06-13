@@ -3,6 +3,11 @@
 
 #include "PIDController3D.h"
 
+// Default constructor
+PIDController3D::PIDController3D()
+{
+}
+
 // Constructor
 PIDController3D::PIDController3D(float ProportionalVal, float IntegralVal, float DerivativeVal,
 	float OutMaxVal, float OutMinVal) :

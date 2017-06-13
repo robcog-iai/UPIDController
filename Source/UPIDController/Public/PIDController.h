@@ -12,6 +12,9 @@ Integral: alignment error
 class UPIDCONTROLLER_API PIDController
 {
 public:
+	// Default constructor
+	PIDController();
+
 	// Constructor
 	PIDController(float ProportionalVal, float IntegralVal, float DerivativeVal,
 		float OutMaxVal = 0.f, float OutMinVal = 0.f);

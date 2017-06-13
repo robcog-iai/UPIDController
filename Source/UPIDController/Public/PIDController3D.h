@@ -4,7 +4,7 @@
 #pragma once
 
 /**
-PID Controller for 3 Dimensions
+PID Controller for FVector
 Error: where you are vs where you want to be
 Derivative: how fast you are approaching, dampening
 Integral: alignment error
@@ -12,6 +12,9 @@ Integral: alignment error
 class UPIDCONTROLLER_API PIDController3D
 {
 public:
+	// Default constructor;
+	PIDController3D();
+
 	// Constructor
 	PIDController3D(float ProportionalVal, float IntegralVal, float DerivativeVal,
 		float OutMaxVal = 0.f, float OutMinVal = 0.f);
