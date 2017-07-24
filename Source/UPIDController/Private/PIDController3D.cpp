@@ -70,8 +70,8 @@ FVector PIDController3D::Update(const FVector Error, const float DeltaTime)
 	{
 		return FVector(
 			(Out.X > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.X),
-			(Out.Y > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Y),
-			(Out.Z > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Z)
+			(Out.Y > OutMax) ? (OutMax) : (Out.Y < OutMin) ? (OutMin) : (Out.Y),
+			(Out.Z > OutMax) ? (OutMax) : (Out.Z < OutMin) ? (OutMin) : (Out.Z)
 		);
 	}
 	else
@@ -96,8 +96,8 @@ FVector PIDController3D::UpdateAsP(const FVector Error, const float DeltaTime)
 	{
 		return FVector(
 			(Out.X > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.X),
-			(Out.Y > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Y),
-			(Out.Z > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Z)
+			(Out.Y > OutMax) ? (OutMax) : (Out.Y < OutMin) ? (OutMin) : (Out.Y),
+			(Out.Z > OutMax) ? (OutMax) : (Out.Z < OutMin) ? (OutMin) : (Out.Z)
 		);
 	}
 	else
@@ -132,8 +132,8 @@ FVector PIDController3D::UpdateAsPD(const FVector Error, const float DeltaTime)
 	{
 		return FVector(
 			(Out.X > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.X),
-			(Out.Y > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Y),
-			(Out.Z > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Z)
+			(Out.Y > OutMax) ? (OutMax) : (Out.Y < OutMin) ? (OutMin) : (Out.Y),
+			(Out.Z > OutMax) ? (OutMax) : (Out.Z < OutMin) ? (OutMin) : (Out.Z)
 		);
 	}
 	else
@@ -165,8 +165,8 @@ FVector PIDController3D::UpdateAsPI(const FVector Error, const float DeltaTime)
 	{
 		return FVector(
 			(Out.X > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.X),
-			(Out.Y > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Y),
-			(Out.Z > OutMax) ? (OutMax) : (Out.X < OutMin) ? (OutMin) : (Out.Z)
+			(Out.Y > OutMax) ? (OutMax) : (Out.Y < OutMin) ? (OutMin) : (Out.Y),
+			(Out.Z > OutMax) ? (OutMax) : (Out.Z < OutMin) ? (OutMin) : (Out.Z)
 		);
 	}
 	else
