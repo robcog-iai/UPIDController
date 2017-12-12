@@ -6,7 +6,6 @@
 // Default constructor
 PIDController::PIDController()
 {
-
 }
 
 // Constructor
