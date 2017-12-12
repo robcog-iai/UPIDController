@@ -1,7 +1,7 @@
 UPIDController
 =====
 
-Plugin with a PID controller class (`PIDController`), and a PID controller for `FVector`'s in 3 dimensional space (`PIDController3D`.
+Plugin with a PID controller USTRUCT (`FPIDController`), and a PID controller for `FVector`'s in 3 dimensional space (`FPIDController3D`.
 
 Usage
 =====
