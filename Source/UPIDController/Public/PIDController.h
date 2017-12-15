@@ -19,19 +19,19 @@ struct UPIDCONTROLLER_API FPIDController
 
 public:
 	// Proportional gain
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
 	float P;
 
 	// Integral gain
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
 	float I;
 
 	// Derivative gain
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
 	float D;
 
 	// Max output (as absolute value)
-	UPROPERTY(EditAnywhere)
+	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
 	float MaxOutAbs;
 
 	// Default constructor (no initialization)
@@ -40,6 +40,15 @@ public:
 	// Constructor with initial value for each component
 	FPIDController(float InP, float InI, float InD, float InMaxOutAbs);
 
+	// Update type function pointer variable
+	typedef float (FPIDController::*UpdateTypeFunctionPtr)(const float, const float);
+
+	// Update type function ptr
+	UpdateTypeFunctionPtr UpdateFunctionPtr;
+
+	// Reset error values, bind update function ptr
+	void Init();
+
 	// Update the PID loop
 	float Update(const float InError, const float InDeltaTime);
 
@@ -47,16 +56,13 @@ public:
 	float UpdateAsPID(const float InError, const float InDeltaTime);
 
 	// Update as a P controller
-	float UpdateAsP(const float InError);
+	float UpdateAsP(const float InError, const float InDeltaTime=0);
 
 	// Update as a PD controller
 	float UpdateAsPD(const float InError, const float InDeltaTime);
 
 	// Update as a PI controller
 	float UpdateAsPI(const float InError, const float InDeltaTime);
-
-	// Reset error values of the PID
-	void Reset();
 	
 private:
 	// Previous step error value
@@ -71,10 +77,45 @@ private:
 FORCEINLINE FPIDController::FPIDController(float InP, float InI, float InD, float InMaxOutAbs)
 	: P(InP), I(InI), D(InD), MaxOutAbs(InMaxOutAbs)
 { 
-	FPIDController::Reset();
+	// Reset errors, bind update function ptr
+	FPIDController::Init();
+}
+
+FORCEINLINE void FPIDController::Init()
+{
+	PrevErr = 0.f;
+	IErr = 0.f;
+
+	// Bind the update type function ptr
+	if (P > 0.f && I > 0.f && D > 0.f)
+	{
+		UpdateFunctionPtr = &FPIDController::UpdateAsPID;
+	}
+	else if (P > 0.f && I > 0.f)
+	{
+		UpdateFunctionPtr = &FPIDController::UpdateAsPI;
+	}
+	else if (P > 0.f && D > 0.f)
+	{
+		UpdateFunctionPtr = &FPIDController::UpdateAsPD;
+	}
+	else if (P > 0.f)
+	{
+		UpdateFunctionPtr = &FPIDController::UpdateAsP;
+	}
+	else
+	{
+		// Default
+		UpdateFunctionPtr = &FPIDController::UpdateAsPID;
+	}	
 }
 
 FORCEINLINE float FPIDController::Update(const float InError, const float InDeltaTime)
+{
+	return (this->*UpdateFunctionPtr)(InError, InDeltaTime);
+}
+
+FORCEINLINE float FPIDController::UpdateAsPID(const float InError, const float InDeltaTime)
 {
 	if (InDeltaTime == 0.0f || FMath::IsNaN(InError))
 	{
@@ -99,15 +140,10 @@ FORCEINLINE float FPIDController::Update(const float InError, const float InDelt
 	const float Out = POut + IOut + DOut;
 	
 	// Clamp output
-	return FMath::Clamp(Out, -MaxOutAbs, MaxOutAbs);
+	return FMath::Clamp(Out, -MaxOutAbs, MaxOutAbs);	
 }
 
-FORCEINLINE float FPIDController::UpdateAsPID(const float InError, const float InDeltaTime)
-{
-	return FPIDController::Update(InError, InDeltaTime);
-}
-
-FORCEINLINE float FPIDController::UpdateAsP(const float InError)
+FORCEINLINE float FPIDController::UpdateAsP(const float InError, const float /*InDeltaTime*/)
 {
 	if (FMath::IsNaN(InError))
 	{
@@ -164,12 +200,6 @@ FORCEINLINE float FPIDController::UpdateAsPI(const float InError, const float In
 
 	// Clamp output
 	return FMath::Clamp(Out, -MaxOutAbs, MaxOutAbs);
-}
-
-FORCEINLINE void FPIDController::Reset()
-{
-	PrevErr = 0.f;
-	IErr = 0.f;
 }
 
 /* DEPRECATED, moved as USTRUCT */
