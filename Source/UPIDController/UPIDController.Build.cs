@@ -11,7 +11,6 @@ public class UPIDController : ModuleRules
 		
 		PublicIncludePaths.AddRange(
 			new string[] {
-				"UPIDController/Public"
 				// ... add public include paths required here ...
 			}
 			);
@@ -19,7 +18,6 @@ public class UPIDController : ModuleRules
 		
 		PrivateIncludePaths.AddRange(
 			new string[] {
-				"UPIDController/Private",
 				// ... add other private include paths required here ...
 			}
 			);

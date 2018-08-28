@@ -1,13 +1,15 @@
 UPIDController
 =====
 
-Plugin with a PID controller USTRUCT (`FPIDController`), and a PID controller for `FVector`'s in 3 dimensional space (`FPIDController3D`.
+Supported engine version: **UE 4.20**
+
+Plugin with a PID controller USTRUCT (`FPIDController`), and a PID controller using `FVector` in 3 dimensional space (`FPIDController3D`).
 
 Usage
 =====
 
 -   Add the plugin to your project (e.g `MyProject/Plugins/UPIDController`)  
-    
+
 
 -   Add the module dependency to your module (Project, Plugin); In the
     `MyModule.Build.cs` file:  
@@ -20,7 +22,7 @@ Usage
 		...  
 		}  
 		);  
-    
+
 
 -   Include `PIDController.h` or `PIDController3D.h` where you plan to use the controller.
 
@@ -49,7 +51,7 @@ Usage
 	LeftLocationPIDController.I= 0.0f;
 	LeftLocationPIDController.D = 50.0f;
 	LeftLocationPIDController.MaxOutAbs = 35000.f;
-	
+
 	// Init PID -- update function will be optimized if I and/or D are 0
 	LeftLocationPIDController.Init();
 
@@ -64,6 +66,3 @@ Usage
 	// const FVector LeftCurrError = MCLeft->GetComponentLocation() - LeftSkeletalMeshComponent->GetComponentLocation();
 	const FVector LeftLocOutput = LeftLocationPIDController.Update(LeftCurrError, InDeltaTime);
 ```
-
-
-### Engine Version 4.18
