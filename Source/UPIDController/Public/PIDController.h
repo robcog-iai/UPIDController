@@ -49,6 +49,9 @@ public:
 	// Reset error values, bind update function ptr
 	void Init();
 
+	//  Set PID values, reset error values, bind update function ptr
+	void Init(float InP, float InI, float InD, float InMaxOutAbs);
+
 	// Update the PID loop
 	float Update(const float InError, const float InDeltaTime);
 
@@ -77,6 +80,16 @@ private:
 FORCEINLINE FPIDController::FPIDController(float InP, float InI, float InD, float InMaxOutAbs)
 	: P(InP), I(InI), D(InD), MaxOutAbs(InMaxOutAbs)
 { 
+	// Reset errors, bind update function ptr
+	FPIDController::Init();
+}
+
+FORCEINLINE void FPIDController::Init(float InP, float InI, float InD, float InMaxOutAbs)
+{
+	P = InP;
+	I = InI;
+	D = InD;
+	MaxOutAbs = InMaxOutAbs;
 	// Reset errors, bind update function ptr
 	FPIDController::Init();
 }
