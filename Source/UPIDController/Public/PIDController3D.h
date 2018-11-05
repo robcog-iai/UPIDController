@@ -60,7 +60,7 @@ public:
 	FVector UpdateAsPID(const FVector InError, const float InDeltaTime);
 
 	// Update as a P controller
-	FVector UpdateAsP(const FVector InError, const float InDeltaTime=0);
+	FVector UpdateAsP(const FVector InError, const float InDeltaTime=0.f);
 
 	// Update as a PD controller
 	FVector UpdateAsPD(const FVector InError, const float InDeltaTime);
