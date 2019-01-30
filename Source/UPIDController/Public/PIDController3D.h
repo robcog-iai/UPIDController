@@ -21,19 +21,19 @@ struct UPIDCONTROLLER_API FPIDController3D
 public:
 	// Proportional gain
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float P;
+	float P = 0.f;
 
 	// Integral gain
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float I;
+	float I = 0.f;
 
 	// Derivative gain
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float D;
+	float D = 0.f;
 
 	// Max output (as absolute value)
 	UPROPERTY(EditAnywhere, meta = (ClampMin = "0.0", UIMin = "0.0"))
-	float MaxOutAbs;
+	float MaxOutAbs = 0.f;
 
 	// Default constructor (no initialization)
 	FPIDController3D() { }
