@@ -6,6 +6,10 @@
 #include "CoreMinimal.h"
 #include "ModuleManager.h"
 
+#if defined(_MSC_VER)
+#define __func__ __FUNCTION__
+#endif
+
 class FUPIDControllerModule : public IModuleInterface
 {
 public:

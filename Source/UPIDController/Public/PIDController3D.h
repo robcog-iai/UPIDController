@@ -15,7 +15,7 @@
 USTRUCT(/*BlueprintType*/)
 struct UPIDCONTROLLER_API FPIDController3D
 {
-	GENERATED_USTRUCT_BODY()
+	GENERATED_BODY()
 
 public:
 	// Proportional gain
