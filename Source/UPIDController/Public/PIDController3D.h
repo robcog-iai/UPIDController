@@ -46,11 +46,11 @@ public:
 	// Update type function ptr
 	UpdateTypeFunctionPtr UpdateFunctionPtr;
 
-	// Reset error values, bind update function ptr
-	void Init();
-
 	// Set PID values, reset error values, bind update function ptr
-	void Init(float InP, float InI, float InD, float InMaxOutAbs);
+	void Init(float InP, float InI, float InD, float InMaxOutAbs, bool bClearErrors = true);
+
+	// Reset error values, bind update function ptr
+	void Init(bool bClearErrors = true);
 
 	// Update the PID loop
 	FVector Update(const FVector InError, const float InDeltaTime);

@@ -12,21 +12,24 @@ FPIDController::FPIDController(float InP, float InI, float InD, float InMaxOutAb
 }
 
 // Init 
-void FPIDController::Init(float InP, float InI, float InD, float InMaxOutAbs)
+void FPIDController::Init(float InP, float InI, float InD, float InMaxOutAbs, bool bClearErrors /*= true*/)
 {
 	P = InP;
 	I = InI;
 	D = InD;
 	MaxOutAbs = InMaxOutAbs;
 	// Reset errors, bind update function ptr
-	FPIDController::Init();
+	FPIDController::Init(bClearErrors);
 }
 
 // Default init
-void FPIDController::Init()
+void FPIDController::Init(bool bClearErrors /*= true*/)
 {
-	PrevErr = 0.f;
-	IErr = 0.f;
+	if (bClearErrors)
+	{
+		PrevErr = 0.f;
+		IErr = 0.f;
+	}
 
 	// Bind the update type function ptr
 	if (P > 0.f && I > 0.f && D > 0.f)
