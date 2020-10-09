@@ -53,19 +53,19 @@ public:
 	void Init(bool bClearErrors = true);
 
 	// Update the PID loop
-	FORCEINLINE FVector Update(const FVector InError, const float InDeltaTime);
+	/*FORCEINLINE*/ FVector Update(const FVector InError, const float InDeltaTime);
 
 	// Update as a PID controller
-	FORCEINLINE FVector UpdateAsPID(const FVector InError, const float InDeltaTime);
+	/*FORCEINLINE*/ FVector UpdateAsPID(const FVector InError, const float InDeltaTime);
 
 	// Update as a P controller
-	FORCEINLINE FVector UpdateAsP(const FVector InError, const float InDeltaTime=0.f);
+	/*FORCEINLINE*/ FVector UpdateAsP(const FVector InError, const float InDeltaTime=0.f);
 
 	// Update as a PD controller
-	FORCEINLINE FVector UpdateAsPD(const FVector InError, const float InDeltaTime);
+	/*FORCEINLINE*/ FVector UpdateAsPD(const FVector InError, const float InDeltaTime);
 
 	// Update as a PI controller
-	FORCEINLINE FVector UpdateAsPI(const FVector InError, const float InDeltaTime);
+	/*FORCEINLINE*/ FVector UpdateAsPI(const FVector InError, const float InDeltaTime);
 
 private:
 	// Previous step error value

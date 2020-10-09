@@ -57,12 +57,12 @@ void FPIDController3D::Init(bool bClearErrors /*= true*/)
 
 
 // Call the update function pointer
-FORCEINLINE FVector FPIDController3D::Update(const FVector InError, const float InDeltaTime)
+/*FORCEINLINE*/ FVector FPIDController3D::Update(const FVector InError, const float InDeltaTime)
 {
 	return (this->*UpdateFunctionPtr)(InError, InDeltaTime);
 }
 
-FORCEINLINE FVector FPIDController3D::UpdateAsPID(const FVector InError, const float InDeltaTime)
+/*FORCEINLINE*/ FVector FPIDController3D::UpdateAsPID(const FVector InError, const float InDeltaTime)
 {
 	//if (InDeltaTime == 0.0f || InError.ContainsNaN())
 	//{
@@ -90,7 +90,7 @@ FORCEINLINE FVector FPIDController3D::UpdateAsPID(const FVector InError, const f
 	return Out.BoundToCube(MaxOutAbs);
 }
 
-FORCEINLINE FVector FPIDController3D::UpdateAsP(const FVector InError, const float /*InDeltaTime*/)
+/*FORCEINLINE*/ FVector FPIDController3D::UpdateAsP(const FVector InError, const float /*InDeltaTime*/)
 {
 	//if (InError.ContainsNaN())
 	//{
@@ -104,7 +104,7 @@ FORCEINLINE FVector FPIDController3D::UpdateAsP(const FVector InError, const flo
 	return Out.BoundToCube(MaxOutAbs);
 }
 
-FORCEINLINE FVector FPIDController3D::UpdateAsPD(const FVector InError, const float InDeltaTime)
+/*FORCEINLINE*/ FVector FPIDController3D::UpdateAsPD(const FVector InError, const float InDeltaTime)
 {
 	//if (InDeltaTime == 0.0f || InError.ContainsNaN())
 	//{
@@ -128,7 +128,7 @@ FORCEINLINE FVector FPIDController3D::UpdateAsPD(const FVector InError, const fl
 	return Out.BoundToCube(MaxOutAbs);
 }
 
-FORCEINLINE FVector FPIDController3D::UpdateAsPI(const FVector InError, const float InDeltaTime)
+/*FORCEINLINE*/ FVector FPIDController3D::UpdateAsPI(const FVector InError, const float InDeltaTime)
 {
 	//if (InDeltaTime == 0.0f || InError.ContainsNaN())
 	//{
